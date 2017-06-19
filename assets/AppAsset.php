@@ -18,10 +18,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-       // 'css/site.css',
-         'web/css/site.css',
-       
-        'web/bootstrap/css/bootstrap.min.css',
+        'css/site.css',
+         'web/bootstrap/css/bootstrap.min.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
         'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
          'web/dist/css/AdminLTE.min.css',
@@ -32,6 +30,7 @@ class AppAsset extends AssetBundle
            'web/plugins/datepicker/datepicker3.css',
             'web/plugins/daterangepicker/daterangepicker.css',
              'web/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+           
     ];
     public $js = [
           "web/plugins/jQuery/jquery-2.2.3.min.js",
@@ -51,6 +50,7 @@ class AppAsset extends AssetBundle
 "web/dist/js/app.min.js",
 "web/dist/js/pages/dashboard.js",
 "web/dist/js/demo.js",
+
     ];
     public $depends = [
         'yii\web\YiiAsset',
