@@ -30,7 +30,7 @@ $this->context->layout = 'login';
                           //  'template' => "<div class=\"col-md-12 col-sm-12 col-xs-12\">{input}</div>\n<div></div>",
                         ],
                     ]); ?>
-    <?php var_dump("hello"); ?>
+   
       <div class="form-group has-feedback">
        <!-- <input type="email" class="form-control" placeholder="Email">-->
          <?= $form->field($model,'project_user_email')->textInput(['placeholder'=>'Email','class'=>'form-control'])->label(false); ?>

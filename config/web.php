@@ -40,7 +40,8 @@ $config = [
         ],
         'db' => $db,
         
-       'urlManager' => [
+       'urlM'
+        . 'anager' => [
             'class' => 'yii\web\UrlManager',
 
             'enablePrettyUrl' => true,
