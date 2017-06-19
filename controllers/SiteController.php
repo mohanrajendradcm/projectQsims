@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\ProjectUser;
 
 class SiteController extends Controller
 {
@@ -71,19 +72,27 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+      
+        if ($model->load(Yii::$app->request->post())&& $model->login()) {
+           $project_user_email=$model->project_user_email;
+          
+         //  var_dump($project_user_email);exit;
+          //  $project_user_password=$model->project_user_password;
+            return $this->render('index');
         }
+        // var_dump("hiii");exit;
         return $this->render('login', [
             'model' => $model,
-        ]);
-    }
-
+            ]);
+   
+            
+        }
+   
     /**
      * Logout action.
      *

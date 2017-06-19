@@ -39,14 +39,19 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
+        
+       'urlM'
+        . 'anager' => [
+            'class' => 'yii\web\UrlManager',
+
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+          // 'enableStrictParsing'=>true,
+          //  'showScriptName' => false,
             'rules' => [
+                '<controller' => '<controller>/index',
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];
