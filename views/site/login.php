@@ -11,8 +11,8 @@ use kartik\password\PasswordInput;
 ?>
 <?php
 $this->context->layout = 'login';
-//$this->title = 'Login';
-//$this->params['breadcrumbs'][] = $this->title;0
+$this->title = 'Login';
+$this->params['breadcrumbs'][] = $this->title;0
 ?>
 <div class="login-box">
   <div class="login-logo">
@@ -30,7 +30,6 @@ $this->context->layout = 'login';
                           //  'template' => "<div class=\"col-md-12 col-sm-12 col-xs-12\">{input}</div>\n<div></div>",
                         ],
                     ]); ?>
-   
       <div class="form-group has-feedback">
        <!-- <input type="email" class="form-control" placeholder="Email">-->
          <?= $form->field($model,'project_user_email')->textInput(['placeholder'=>'Email','class'=>'form-control'])->label(false); ?>

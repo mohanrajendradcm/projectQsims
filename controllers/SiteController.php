@@ -10,35 +10,38 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\ProjectUser;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
     /**
      * @inheritdoc
      */
+    public $layout = 'main';
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
+               'class' => \yii\filters\AccessControl::className(), 
+                'only' => ['logout','login','index'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                      [
+                        'actions' => ['error','index','logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                   
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+          
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -64,34 +67,46 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+   
 
     /**
      * Login action.
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
+  /*  public function beforeAction($action)
+{        
+    if (\Yii::$app->getUser()->isGuest &&
+        \Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl)
+    ) {
+        \Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl);
+    }
+    return parent::beforeAction($action);
+}*/
+
+      public function actionLogin()
+   {
+       
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
+  
         $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        //    var_dump($model->login());exit;
+           // return $this->redirect(Url::toRoute(['site/index'])); 
+       return $this->goBack();
       
-        if ($model->load(Yii::$app->request->post())&& $model->login()) {
-           $project_user_email=$model->project_user_email;
-          
-         //  var_dump($project_user_email);exit;
-          //  $project_user_password=$model->project_user_password;
-            return $this->render('index');
         }
-        // var_dump("hiii");exit;
+        else
+        {
         return $this->render('login', [
             'model' => $model,
-            ]);
-   
-            
-        }
+        ]);
+    }
+   }
+
    
     /**
      * Logout action.

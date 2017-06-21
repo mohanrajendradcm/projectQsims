@@ -5,9 +5,13 @@ $db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic',
+    
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+ 
+ 
     'components' => [
+       
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'l6XysCSLG4GBG_KoRbAQx8Qv59UqlvVc',
@@ -16,7 +20,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\ProjectUser',
+            'class' => 'yii\web\user',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -39,21 +44,35 @@ $config = [
             ],
         ],
         'db' => $db,
-        
-       'urlM'
-        . 'anager' => [
-            'class' => 'yii\web\UrlManager',
-
+       
+       'urlManager' => [
+           'class' => 'yii\web\UrlManager',
+             
             'enablePrettyUrl' => true,
-          // 'enableStrictParsing'=>true,
-          //  'showScriptName' => false,
+         //  'enableStrictParsing'=>true,
+          'showScriptName' => false,
             'rules' => [
+                
                 '<controller' => '<controller>/index',
             ],
         ],
         
     ],
     'params' => $params,
+    
+   // 'as beforeAction' => [  //if guest user access site so, redirect to login page.
+  //  'class' => 'yii\filters\AccessControl',
+  //  'rules' => [
+ //       [
+  //         'actions' => ['login', 'error'],
+  //         'allow' => true,
+  //      ],
+   //     [
+   //        'allow' => true,
+   //        'roles' => ['@'],
+    //   ],
+  //  ],
+//],
 ];
 
 if (YII_ENV_DEV) {

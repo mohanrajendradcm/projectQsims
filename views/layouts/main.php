@@ -17,6 +17,8 @@ use yii\helpers\Url;
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -279,7 +281,7 @@ use yii\helpers\Url;
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?= Url::toRoute(['/site/logout']) ?>" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?= Url::toRoute('site/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -575,6 +577,7 @@ use yii\helpers\Url;
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
+            <?= $content ?>
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
@@ -1208,8 +1211,30 @@ use yii\helpers\Url;
   <div class="control-sidebar-bg"></div>
 </div>
 
+   <div class="right_col body-skin-color" role="main" style="">
+      
+          <div class="breadcrumbs-align">
+           
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'homeLink' => false,
+                    ]) ?>
+          </div>
+             
+          
+          
+      </div>
+      <footer class="footer">
+
+                  <p class="pull-left">&copy; DCM Compliance <?= date('Y') ?></p>
+                  <p class="pull-right"><?= Yii::powered() ?></p>
+     </footer>
+
+ </div>
 
 <?php $this->endBody() ?>
 </body>
 </html>
+
 <?php $this->endPage() ?>
+

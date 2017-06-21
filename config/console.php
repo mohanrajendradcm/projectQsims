@@ -12,6 +12,11 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+           'user' => [
+           'identityClass' => 'app\models\SimUser',
+           'class' => 'yii\web\user',
+           'enableAutoLogin' => true,
+            ],
         'log' => [
             'targets' => [
                 [
