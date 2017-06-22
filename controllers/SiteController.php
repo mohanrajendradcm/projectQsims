@@ -23,7 +23,7 @@ class SiteController extends Controller
         return [
             'access' => [
                'class' => \yii\filters\AccessControl::className(), 
-                'only' => ['logout','login','index'],
+                'only' => ['logout','login','index','about','contact'],
                 'rules' => [
                     [
                         'actions' => ['login'],
