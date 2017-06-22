@@ -13,7 +13,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
            'user' => [
-           'identityClass' => 'app\models\SimUser',
+           'identityClass' => 'app\models\ProjectUser',
            'class' => 'yii\web\user',
            'enableAutoLogin' => true,
             ],
