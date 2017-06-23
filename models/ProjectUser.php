@@ -22,8 +22,7 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
 
     public $agree;
     public $rememberMe; 
-   
-   
+ 
 //    
 //    /**
 //     * @inheritdoc 
