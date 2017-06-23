@@ -17,23 +17,35 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public $layout = 'main';
+
     public function behaviors()
     {
         return [
             'access' => [
                'class' => \yii\filters\AccessControl::className(), 
-                'only' => ['logout','login','index','about','contact'],
+              //  'only' => ['logout','login','index','about','contact','project'],
                 'rules' => [
                     [
-                        'actions' => ['login'],
+                        'actions' => ['login','signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                       [
-                        'actions' => ['error','index','logout','about','contact'],
+                        'actions' => ['index','logout','about','contact'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                     [
+                        'actions' => ['project','index','logout','about','contact'],
+                        'allow' => true,
+                        'roles' => ['project_cordinator'],
+
+                    ],
+                  [
+                        'actions' => ['projectdetails','index','logout','about','contact'],
+                        'allow' => true,
+                        'roles' => ['project_manager'],
+
                     ],
                     
                 ],
@@ -93,6 +105,7 @@ class SiteController extends Controller
         }
   
         $model = new LoginForm();
+      //   $model1 = new ProjectUser(['scenario' => ProjectUser::SCENARIO_LOGIN]);
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
         //    var_dump($model->login());exit;
            // return $this->redirect(Url::toRoute(['site/index'])); 
@@ -147,4 +160,31 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionSignup()
+    {
+        $model=new ProjectUser();
+       //   $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_SIGNUP]);
+           if ($model->load(Yii::$app->request->post())) {
+           
+                $model->save();
+            return $this->redirect('site/login');
+       
+        } 
+            return $this->render('signup', [
+                'model' => $model,
+            ]);
+            
+        
+    }
+    public function actionProject()
+    {
+        //var_dump("hello");exit;
+        echo("hello welcome to the project");
+    }
+    public function actionProjectdetails()
+    {
+        echo("welcome");
+    }
+  
+    
 }

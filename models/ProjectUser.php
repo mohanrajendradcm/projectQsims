@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\LoginForm;
 
 /**
  * This is the model class for table "project_user".
@@ -18,6 +19,18 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     /**
      * @inheritdoc
      */
+
+    public $agree;
+    public $rememberMe; 
+   
+   
+//    
+//    /**
+//     * @inheritdoc 
+//     * 
+//     */
+//    
+   
     public static function tableName()
     {
         return 'project_user';
@@ -29,12 +42,15 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     public function rules()
     {
         return [
-           // [['project_user_id', 'project_user_email', 'project_user_password', 'project_user_fname'], 'required'],
+         //   [['project_user_email', 'project_user_password']],
+            [['project_user_email', 'project_user_password','project_user_fname', 'project_user_lname'],'required'],
+             [['project_user_email'],'email'],
             [['project_user_id'], 'integer'],
-            [['project_user_email', 'project_user_fname', 'project_user_lname'], 'string', 'max' => 45],
-            [['project_user_password'], 'string', 'max' => 100],
+           [['agree','rememberMe'],'boolean'],
+            [['project_user_fname', 'project_user_lname'], 'string', 'max' => 45],
+          //  [['project_user_password'], 'string', 'max' => 100],
             [['authKey'],'string','max'=>20],
-            [['project_user_id'], 'unique'],
+           [['project_user_id'], 'unique'],
         ];
     }
 

@@ -18,6 +18,7 @@ class LoginForm extends Model
     public $project_user_email;
     public $project_user_password;
     public $project_user_fname;
+    public $project_user_lname;
     public $rememberMe = true;
 
 
@@ -41,6 +42,7 @@ class LoginForm extends Model
             [['project_user_id'], 'integer'],
             ['rememberMe', 'boolean'],
           //  [['project_user_password'],'string','min'=>8], 
+             [['project_user_fname','project_user_lname'],'string'],
            ['project_user_email','email'],
             ['project_user_password', 'validatePassword'],
            [['project_user_id'], 'unique'],

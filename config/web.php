@@ -34,6 +34,16 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+         'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+            'cache' => 'cache',
+            //these configuratio allow to rename the auth table  
+            'itemTable' => 'project_auth_item',
+            'assignmentTable' => 'project_auth_assignment',
+            'itemChildTable' => 'project_auth_item_child',
+            'ruleTable' => 'project_auth_rule',
+          ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
