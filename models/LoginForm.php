@@ -13,25 +13,50 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
-    public $password;
+   public $project_user_id;
+
+    public $project_user_email;
+    public $project_user_password;
+    public $project_user_fname;
+    public $project_user_lname;
     public $rememberMe = true;
 
-    private $_user = false;
 
+    private $_user=false;
+
+//    const SCENARIO_LOGIN = 'login';
+ //   public function scenarios()
+ //   {
+   //     return [
+    //          self::SCENARIO_LOGIN =>  ['project_user_email', 'project_user_password'],
+    //    ];
+   // }
 
     /**
      * @return array the validation rules.
      */
     public function rules()
     {
-        return [
-            // username and password are both required
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
+         return [
+            [[ 'project_user_email', 'project_user_password'], 'required'],
+            [['project_user_id'], 'integer'],
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+          //  [['project_user_password'],'string','min'=>8], 
+             [['project_user_fname','project_user_lname'],'string'],
+           ['project_user_email','email'],
+            ['project_user_password', 'validatePassword'],
+           [['project_user_id'], 'unique'],
+        ];
+    }
+     public function attributeLabels()
+    {
+        return [
+            'project_user_id' => 'Project User ID',
+            'project_user_email' => 'User Email',
+            'project_user_password' => 'User Password',
+            'project_user_fname' => 'User First name',
+            'project_user_lname' => 'Project User Last name',
+            'authKey'=>'authKey',
         ];
     }
 
@@ -46,8 +71,9 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
+         
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$user || !$user->validatePassword($this->project_user_password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -64,18 +90,13 @@ class LoginForm extends Model
         }
         return false;
     }
-
-    /**
-     * Finds user by [[username]]
-     *
-     * @return User|null
-     */
     public function getUser()
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+        if($this->_user===false){
+           $this->_user = ProjectUser::findByEmail($this->project_user_email); 
         }
-
         return $this->_user;
     }
+
+   
 }

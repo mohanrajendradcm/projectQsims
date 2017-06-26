@@ -10,35 +10,50 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\ProjectUser;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
     /**
      * @inheritdoc
      */
+
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
+               'class' => \yii\filters\AccessControl::className(), 
+              //  'only' => ['logout','login','index','about','contact','project'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['login','signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                      [
+                        'actions' => ['index','logout','about','contact'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                     [
+                        'actions' => ['project','index','logout','about','contact'],
+                        'allow' => true,
+                        'roles' => ['project_cordinator'],
+
+                    ],
+                  [
+                        'actions' => ['projectdetails','index','logout','about','contact'],
+                        'allow' => true,
+                        'roles' => ['project_manager'],
+
+                    ],
+                    
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+          
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -64,34 +79,47 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+   
 
     /**
      * Login action.
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
+  /*  public function beforeAction($action)
+{        
+    if (\Yii::$app->getUser()->isGuest &&
+        \Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl)
+    ) {
+        \Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl);
+    }
+    return parent::beforeAction($action);
+}*/
+
+      public function actionLogin()
+   {
+       
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
+  
         $model = new LoginForm();
+      //   $model1 = new ProjectUser(['scenario' => ProjectUser::SCENARIO_LOGIN]);
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        //    var_dump($model->login());exit;
+           // return $this->redirect(Url::toRoute(['site/index'])); 
+       return $this->goBack();
       
-        if ($model->load(Yii::$app->request->post())&& $model->login()) {
-           $project_user_email=$model->project_user_email;
-          
-         //  var_dump($project_user_email);exit;
-          //  $project_user_password=$model->project_user_password;
-            return $this->render('index');
         }
-        // var_dump("hiii");exit;
+        else
+        {
         return $this->render('login', [
             'model' => $model,
-            ]);
-   
-            
-        }
+        ]);
+    }
+   }
+
    
     /**
      * Logout action.
@@ -132,4 +160,31 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionSignup()
+    {
+        $model=new ProjectUser();
+       //   $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_SIGNUP]);
+           if ($model->load(Yii::$app->request->post())) {
+           
+                $model->save();
+            return $this->redirect('site/login');
+       
+        } 
+            return $this->render('signup', [
+                'model' => $model,
+            ]);
+            
+        
+    }
+    public function actionProject()
+    {
+        //var_dump("hello");exit;
+        echo("hello welcome to the project");
+    }
+    public function actionProjectdetails()
+    {
+        echo("welcome");
+    }
+  
+    
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "074fee6f3c4d703778426393b86ee255",
+    "content-hash": "fba6ce66d6697c1d348abf08c9d83434",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -266,6 +266,52 @@
                 "markdown-extra"
             ],
             "time": "2017-04-04T09:40:58+00:00"
+        },
+        {
+            "name": "cornernote/yii2-returnurl",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cornernote/yii2-returnurl.git",
+                "reference": "71e42b113d9bdcff09c54067d47c7d15e4f3fd4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cornernote/yii2-returnurl/zipball/71e42b113d9bdcff09c54067d47c7d15e4f3fd4a",
+                "reference": "71e42b113d9bdcff09c54067d47c7d15e4f3fd4a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cornernote\\returnurl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Brett O'Donnell",
+                    "email": "cornernote@gmail.com",
+                    "homepage": "http://mrphp.com.au/"
+                }
+            ],
+            "description": "ReturnUrl helper for tab-aware nested redirection in Yii2.",
+            "keywords": [
+                "returnUrl",
+                "url",
+                "yii2"
+            ],
+            "time": "2017-05-09 04:37:55"
         },
         {
             "name": "ezyang/htmlpurifier",

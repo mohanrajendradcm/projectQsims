@@ -12,6 +12,21 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+         'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+            'cache' => 'cache',
+            //these configuratio allow to rename the auth table  
+            'itemTable' => 'sim_auth_item',
+            'assignmentTable' => 'sim_auth_assignment',
+            'itemChildTable' => 'sim_auth_item_child',
+            'ruleTable' => 'sim_auth_rule',
+          ],
+           'user' => [
+           'identityClass' => 'app\models\ProjectUser',
+           'class' => 'yii\web\user',
+           'enableAutoLogin' => true,
+            ],
         'log' => [
             'targets' => [
                 [

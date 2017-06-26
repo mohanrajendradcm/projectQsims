@@ -1,3 +1,4 @@
+
 <?php
 
 /* @var $this yii\web\View */
@@ -11,42 +12,52 @@ use kartik\password\PasswordInput;
 ?>
 <?php
 $this->context->layout = 'login';
-$this->title = 'Login';
+$this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;0
 ?>
-<div class="login-box">
-  <div class="login-logo">
-      <a href="@"><b>Admin</b>LTE</a>
-  </div>
-    <body class="hold-transition login-page">
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
 
-      <?php $form = ActiveForm::begin([
+   <body class="hold-transition register-page">
+ <div class="register-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Register a new membership</p>
+
+ <?php $form = ActiveForm::begin([
                         'id' => 'login-form',
                         'options' => ['class' => 'form-horizontal disable-submit-buttons'],
                         'fieldConfig' => [
                           //  'template' => "<div class=\"col-md-12 col-sm-12 col-xs-12\">{input}</div>\n<div></div>",
                         ],
                     ]); ?>
-      <div class="form-group has-feedback">
+        <div class="form-group has-feedback">
        <!-- <input type="email" class="form-control" placeholder="Email">-->
          <?= $form->field($model,'project_user_email')->textInput(['placeholder'=>'Email','class'=>'form-control'])->label(false); ?>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
        <!-- <input type="password" class="form-control" placeholder="Password">-->
            <?= $form->field($model,'project_user_password')->passwordInput(['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Password'])->label(false); ?>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+       <div class="form-group has-feedback">
+       <!-- <input type="email" class="form-control" placeholder="Email">-->
+         <?= $form->field($model,'project_user_fname')->textInput(['placeholder'=>'Firstname','class'=>'form-control'])->label(false); ?>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+       <!-- <input type="email" class="form-control" placeholder="Email">-->
+         <?= $form->field($model,'project_user_lname')->textInput(['placeholder'=>'Lastname','class'=>'form-control'])->label(false); ?>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
+         <div class="checkbox icheck">
             <!--<label>
               <input type="checkbox"> Remember Me
             </label>-->
-            <?= $form->field($model, 'rememberMe')->checkbox([
+            <?= $form->field($model, 'agree')->checkbox([
             //'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
           </div>
@@ -54,9 +65,9 @@ $this->params['breadcrumbs'][] = $this->title;0
         <!-- /.col -->
         <div class="col-xs-4">
           <!--<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>-->
-      <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'Signin-button']) ?>
+      <?= Html::submitButton('Register', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'Signin-button']) ?>
           
-        </div>
+     </div>
         <!-- /.col -->
       </div>
       <?php ActiveForm::end(); ?>
@@ -71,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;0
     <!-- /.social-auth-links -->
 
     <a href="#">I forgot my password</a><br>
-    <a href="<?= Url::toRoute('site/signup') ?>" class="text-center">Register a new membership</a>
+    <a href="" class="text-center">Already a member</a>
 
   </div>
 </div>
