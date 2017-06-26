@@ -35,6 +35,17 @@ class LoginForm extends Model
     /**
      * @return array the validation rules.
      */
+    
+    
+     const SCENARIO_LOGIN = 'login';
+    public function scenarios()
+    {
+        return [
+           
+            //  self::SCENARIO_CAPTCHA => ['email', 'password','captcha'],
+              self::SCENARIO_LOGIN => ['project_user_email','project_user_password','rememberMe'],
+        ];
+    }
     public function rules()
     {
          return [
