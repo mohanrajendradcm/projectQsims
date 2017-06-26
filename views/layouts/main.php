@@ -331,6 +331,7 @@ use yii\helpers\Url;
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="web/admin/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li><a href="<?= Url::toRoute('projectdetails/index') ?>"><i class="fa fa-circle-o"></i>Project Details</a></li>
             <li><a href="web/admin/index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>

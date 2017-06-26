@@ -29,7 +29,17 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
 //     * 
 //     */
 //    
+    const SCENARIO_REGISTER = 'signup';
+    const SCENARIO_LOGIN = 'login';
    
+     public function scenarios()
+    {
+        return [
+           
+            self::SCENARIO_REGISTER => ['project_user_email', 'project_user_password','project_user_fname', 'project_user_lname','agree'],
+            self::SCENARIO_LOGIN => ['project_user_email', 'project_user_password','rememberMe'],
+        ];
+    }
     public static function tableName()
     {
         return 'project_user';
@@ -93,5 +103,6 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     public  function validatePassword($project_user_password)
     {
        return $this->project_user_password===$project_user_password;
+       //   return Yii::$app->getSecurity()->validatePassword($project_user_password, $this->project_user_password);
     }
 }

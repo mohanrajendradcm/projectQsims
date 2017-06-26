@@ -12,8 +12,14 @@ use kartik\password\PasswordInput;
 <?php
 $this->context->layout = 'login';
 $this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;0
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php
+    $this->registerJs("
+         setTimeout(function() {
+    $('#flashMessage').fadeOut('fast');
+}, 1000)
+      ");  ?>
 <div class="login-box">
   <div class="login-logo">
       <a href="@"><b>Admin</b>LTE</a>
@@ -21,6 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;0
     <body class="hold-transition login-page">
   <!-- /.login-logo -->
   <div class="login-box-body">
+      <div id="flashMessage" style="text-align:center;color:green;"> 
+    <?php echo \Yii::$app->session->getFlash('flashMessage');?>
+      </div>
     <p class="login-box-msg">Sign in to start your session</p>
 
       <?php $form = ActiveForm::begin([

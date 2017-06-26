@@ -104,11 +104,12 @@ class SiteController extends Controller
             return $this->goHome();
         }
   
-        $model = new LoginForm();
-      //   $model1 = new ProjectUser(['scenario' => ProjectUser::SCENARIO_LOGIN]);
+       // $model = new LoginForm();
+         $model = new LoginForm(['scenario' => ProjectUser::SCENARIO_LOGIN]);
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
         //    var_dump($model->login());exit;
            // return $this->redirect(Url::toRoute(['site/index'])); 
+           //  \Yii::$app->session->setFlash('flashMessage', 'Sucessfully Login'); 
        return $this->goBack();
       
         }
@@ -163,10 +164,12 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model=new ProjectUser();
-       //   $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_SIGNUP]);
+          $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_REGISTER]);
            if ($model->load(Yii::$app->request->post())) {
-           
+          // $hash = Yii::$app->getSecurity()->generatePasswordHash($model->project_user_password);
+         //  $model->project_user_password=$hash;
                 $model->save();
+             \Yii::$app->session->setFlash('flashMessage', 'Sucessfully Registerd'); 
             return $this->redirect('site/login');
        
         } 
