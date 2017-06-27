@@ -50,6 +50,7 @@ class DashboardAsset extends AssetBundle
 "web/dist/js/app.min.js",
 "web/dist/js/pages/dashboard.js",
 "web/dist/js/demo.js",
+         "web/admin/bootstrap/js/main.js",
 
     ];
     public $depends = [

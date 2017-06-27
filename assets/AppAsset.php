@@ -7,6 +7,7 @@
 
 namespace app\assets;
 
+use yii;
 use yii\web\AssetBundle;
 
 /**
@@ -18,7 +19,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'web/css/site.css',
          'web/admin/bootstrap/css/bootstrap.min.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css',
         'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
@@ -33,6 +34,7 @@ class AppAsset extends AssetBundle
            
     ];
     public $js = [
+       "web/js/main.js",
           "web/admin/plugins/jQuery/jquery-2.2.3.min.js",
 "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
 "web/admin/bootstrap/js/bootstrap.min.js",
@@ -50,6 +52,7 @@ class AppAsset extends AssetBundle
 "web/admin/dist/js/app.min.js",
 "web/admin/dist/js/pages/dashboard.js",
 "web/admin/dist/js/demo.js",
+ 
 
     ];
     public $depends = [

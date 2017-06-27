@@ -30,6 +30,7 @@ class LoginAsset extends AssetBundle
         'web/admin/plugins/jQuery/jquery-2.2.3.min.js',
          'web/admin/bootstrap/js/bootstrap.min.js',
          'web/admin/plugins/iCheck/icheck.min.js',
+         //"web/js/main.js",
        
     ];
     public $depends = [
