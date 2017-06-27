@@ -24,25 +24,14 @@ class LoginForm extends Model
 
     private $_user=false;
 
-//    const SCENARIO_LOGIN = 'login';
- //   public function scenarios()
- //   {
-   //     return [
-    //          self::SCENARIO_LOGIN =>  ['project_user_email', 'project_user_password'],
-    //    ];
-   // }
 
-    /**
-     * @return array the validation rules.
-     */
     
     
-     const SCENARIO_LOGIN = 'login';
+   const SCENARIO_LOGIN = 'login';
     public function scenarios()
     {
         return [
            
-            //  self::SCENARIO_CAPTCHA => ['email', 'password','captcha'],
               self::SCENARIO_LOGIN => ['project_user_email','project_user_password','rememberMe'],
         ];
     }
@@ -52,11 +41,10 @@ class LoginForm extends Model
             [[ 'project_user_email', 'project_user_password'], 'required'],
             [['project_user_id'], 'integer'],
             ['rememberMe', 'boolean'],
-          //  [['project_user_password'],'string','min'=>8], 
-             [['project_user_fname','project_user_lname'],'string'],
-           ['project_user_email','email'],
+            [['project_user_fname','project_user_lname'],'string'],
+            ['project_user_email','email'],
             ['project_user_password', 'validatePassword'],
-           [['project_user_id'], 'unique'],
+            [['project_user_id'], 'unique'],
         ];
     }
      public function attributeLabels()

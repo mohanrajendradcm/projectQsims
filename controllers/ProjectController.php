@@ -86,8 +86,7 @@ class ProjectController extends Controller
         $model = new Project();
     
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //var_dump($model->project_name);exit;
-          //  return $this->redirect(['index', 'id' => $model->project_id]);
+    
              return $this->redirect(Url::toRoute('project/index/'));
         } else {
           

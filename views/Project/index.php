@@ -9,9 +9,6 @@ use app\models\Project;
 use yii\jui\Draggable;
 
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\ProjectSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Projects';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,8 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             var a = $("#flagstrap-drop-down-ImSfy6ui-list").html();
             alert(a);
      });
-     
-//     if(window).height() 
+    
  
 ');
 ?>
@@ -54,8 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'clientOptions' => ['grid' => [50, 20]],
             ]);
      Modal::begin([
-        // 'header'=>'<h4>Projects</h4>',
-           'header' => '<span class ="modal-font-size">'.Yii::t('app','Create Projects').'</span>',
+          'header' => '<span class ="modal-font-size">'.Yii::t('app','Create Projects').'</span>',
           'id' => 'modal',
           'size' => 'modal-md',
           'class' => 'modal-sm',
@@ -85,11 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
                Draggable::end();
         ?>
     <?php Pjax::end(); ?> 
-     <div class="align-right">
-          <?php 
-               $createButton = Html::button(Yii::t('app','Create New Project'), ['class' => 'btn btn-success btn-xs ','id'=>'modalButton','value' => Url::to('/category/create'),]);
-          ?>
-    </div>
+                    
+   <!--  <div class="align-right">
+         // <?php 
+          //     $createButton = Html::button(Yii::t('app','Create New Project'), ['class' => 'btn btn-success btn-xs ','id'=>'modalButton','value' => Url::to('/category/create'),]);
+        //  ?>
+    </div>-->
+                    
       <div style="clear:both;">  
 <?php Pjax::begin();?>
     <?= GridView::widget([
@@ -102,28 +99,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'class' => 'GridRowColor'
         ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-          
-           // 'project_id',
+            ['class' => 'yii\grid\SerialColumn'],    
             'project_name',
             'project_description',
             'project_owner',
-           // 'created_date',
-
-           ['class' => 'yii\grid\ActionColumn'],
-             // [ 'class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {delete}',
-             //     'header'=> $createButton,
-             //     'options'=>['style'=>'width:70px;'
-                      
-             //         ],
-                //'buttons' => 
-               //     ['delete' => function ($url) use ($class)
-                          //      {return Html::a( '<span class="glyphicon glyphicon-trash"> </span>', $url, 
-                                       // [ 'title' => Yii::t('app', 'Delete'), 'data-pjax' => '0']
-                                   // ); 
-                              //  }, 
-                 //   ],
-         //  ],
+           ['class' => 'yii\grid\ActionColumn'],        
         ],
     ]); ?>
     <?php Pjax::end();?>

@@ -80,22 +80,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
     
-   
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-  /*  public function beforeAction($action)
-{        
-    if (\Yii::$app->getUser()->isGuest &&
-        \Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl)
-    ) {
-        \Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl);
-    }
-    return parent::beforeAction($action);
-}*/
 
       public function actionLogin()
    {
@@ -107,9 +91,6 @@ class SiteController extends Controller
        // $model = new LoginForm();
          $model = new LoginForm(['scenario' => ProjectUser::SCENARIO_LOGIN]);
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-        //    var_dump($model->login());exit;
-           // return $this->redirect(Url::toRoute(['site/index'])); 
-           //  \Yii::$app->session->setFlash('flashMessage', 'Sucessfully Login'); 
        return $this->goBack();
       
         }
@@ -164,8 +145,8 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model=new ProjectUser();
-          $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_REGISTER]);
-           if ($model->load(Yii::$app->request->post())) {
+        $model = new ProjectUser(['scenario' => ProjectUser::SCENARIO_REGISTER]);
+        if ($model->load(Yii::$app->request->post())) {
           // $hash = Yii::$app->getSecurity()->generatePasswordHash($model->project_user_password);
          //  $model->project_user_password=$hash;
                 $model->save();
@@ -175,7 +156,7 @@ class SiteController extends Controller
         } 
             return $this->render('signup', [
                 'model' => $model,
-            ]);
+         ]);
             
         
     }
