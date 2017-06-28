@@ -52,14 +52,14 @@ class ProjectUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     {
         return [
          //   [['project_user_email', 'project_user_password']],
-            [['project_user_email', 'project_user_password','project_user_fname', 'project_user_lname'],'required'],
-             [['project_user_email'],'email'],
-            [['project_user_id'], 'integer'],
-           [['agree','rememberMe'],'boolean'],
-            [['project_user_fname', 'project_user_lname'], 'string', 'max' => 45],
+              [['project_user_email', 'project_user_password','project_user_fname', 'project_user_lname'],'required'],
+              [['project_user_email'],'email'],
+              [['project_user_id'], 'integer'],
+              [['agree','rememberMe'],'boolean'],
+              [['project_user_fname', 'project_user_lname'], 'string', 'max' => 45],
           //  [['project_user_password'], 'string', 'max' => 100],
-            [['authKey'],'string','max'=>20],
-           [['project_user_id'], 'unique'],
+              [['authKey'],'string','max'=>20],
+              [['project_user_id'], 'unique'],
         ];
     }
 
