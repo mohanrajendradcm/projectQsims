@@ -34,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<?php  $this->render('//topmenu/topmenu', ['buttons'=>['project/index'=>'Project', 'projectdetails/index'=>'Task']]); ?>
+<?php echo \Yii::$app->view->renderFile('@app/views/topmenu/projects.php'); ?>
 
 <p style="text-align:right">
         <?= Html::button('Create Project',['value'=>Url::to('/project/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
