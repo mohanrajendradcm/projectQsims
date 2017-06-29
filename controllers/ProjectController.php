@@ -55,12 +55,19 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Project();
         $searchModel = new ProjectSearch();
+      //  if ($model->load(Yii::$app->request->post()) && $model->save())
+       // {
+       //     $model = new Project(); //reset model
+      //  }
+ 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model'=>$model,
         ]);
     }
 
@@ -84,9 +91,9 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $model = new Project();
-    
+         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    
+   
              return $this->redirect(Url::toRoute('project/index/'));
         } else {
           

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="project-details-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 <?php  $this->render('//topmenu/topmenu', ['buttons'=>['project/index'=>'Project', 'projectdetails/index'=>'Task']]); ?>
 <?php echo \Yii::$app->view->renderFile('@app/views/topmenu/projects.php'); ?>
     <p style="text-align:right">
