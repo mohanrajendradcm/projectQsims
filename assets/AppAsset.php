@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
         'web/admin/plugins/iCheck/flat/blue.css',
         'web/admin/plugins/morris/morris.css',
         'web/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
+         'web/customcss/main.css',
       // 'web/admin/plugins/datepicker/datepicker3.css',
        // 'web/admin/plugins/daterangepicker/daterangepicker.css',
         'web/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
