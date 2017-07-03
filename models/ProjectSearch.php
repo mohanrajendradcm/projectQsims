@@ -60,13 +60,13 @@ class ProjectSearch extends Project
         // grid filtering conditions
         $query->andFilterWhere([
             'project_id' => $this->project_id,
-            'created_date' => $this->created_date,
+          //  'created_date' => $this->created_date,
         ]);
 
         $query->andFilterWhere(['like', 'project_name', $this->project_name])
             ->andFilterWhere(['like', 'project_description', $this->project_description])
-            ->andFilterWhere(['like', 'project_owner', $this->project_owner]);
-
+            ->andFilterWhere(['like', 'project_owner', $this->project_owner])
+            ->andFilterWhere(['like', 'created_date', $this->created_date]);
         return $dataProvider;
     }
 }

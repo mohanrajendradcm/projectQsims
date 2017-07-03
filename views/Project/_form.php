@@ -2,11 +2,15 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\jui\DatePicker;
+use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="project-form">
@@ -46,6 +50,32 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'project_owner')->textInput(['maxlength' => true]) ?>
 
  <!--   <?= $form->field($model, 'created_date')->textInput() ?>-->
+ 
+<!--<?php echo  $form->field($model, 'created_date')->widget(DatePicker::classname(), [
+    'model' => $model,
+    'attribute' => 'created_date',
+    'options' => [
+        'placeholder' => 'Created date',
+        'class' => 'datePicker',
+        'style'=>'width:200px;border-radius:5px;border:1px solid #ccc;font-size:14px;height:28px;',
+       // 'dateFormat' => 'yyyy-M-dd',
+    ],
+    //'language' => 'ru',
+    'dateFormat' => 'yy-MM-dd',
+]);
+?>-->
+        <?php  
+            //Select Category from sim_modules table and assign module_id.
+            $category = ArrayHelper::map(app\models\ProjectCompany::find()->all(),'company_id' ,'company_name');
+            echo $form->field($model, 'company_id')->widget(Select2::classname(), [
+                   'data' => $category,
+                   'options' => ['placeholder'=> Yii::t('app','Select Company').'....', 'style'=> 'width:20px!important;'],
+                   'pluginOptions' => [
+                       'allowClear' => true
+                   ],
+            ])->label(Yii::t('app','Company'));; 
+        ?>
+    
  
       <div style="clear:both;"></div>
     <div class="form-group">

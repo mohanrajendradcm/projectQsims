@@ -7,7 +7,8 @@ use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use app\models\Project;
 use yii\jui\Draggable;
-
+use yii\widgets\ActiveForm;
+use app\models\ProjectSearch;
 
 
 $this->title = 'Projects';
@@ -18,22 +19,30 @@ $this->params['breadcrumbs'][] = $this->title;
       $("#modal").draggable({
         handle: ".modal-header"
     });   
-    var a =$( window ).width();
-    console.log(a);
+  
+
+        
+    $(".datepicker").datepicker({
+              changeMonth: true,
+              changeYear: true,
+              dateFormat: "yy-mm-d",
+       });
+     //   alert("hii");
+//$(".datepicker").datepicker("show");
+   ') 
+        
+        
      
-    $("#demo").flagStrap(function(){   
-    });
-    
-    jQuery("body").on("click", "#demo", function() {
-            var a = $("#flagstrap-drop-down-ImSfy6ui-list").html();
-            alert(a);
-     });
-    
- 
-');
 ?>
+    
+     <div class="margin-top-20"></div>
+
+      <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+     
+<?php  $this->render('//topmenu/topmenu', ['buttons'=>['project/index'=>'Project', 'projectdetails/index'=>'Task']]); ?>
+<?php echo \Yii::$app->view->renderFile('@app/views/topmenu/projects.php'); ?>
 
 <p style="text-align:right">
         <?= Html::button('Create Project',['value'=>Url::to('/project/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
@@ -43,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
   <!--<?php echo Html::a( Yii::t( 'app','projects' ), [ 'project/create' ], [ 'class' => 'btn btn-success','id'=>'modalButton' ]
                     ); ?>-->
-
+  
   <?php Pjax::begin(); ?>
     <?php
        Draggable::begin([
@@ -88,23 +97,22 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>-->
                     
       <div style="clear:both;">  
+      
 <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-          'headerRowOptions' => [
-            'class' => 'GridHeadingColor'
-        ],
-        'rowOptions' => [
-            'class' => 'GridRowColor'
-        ],
+     //   'filterModel' => $searchModel,
+      
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],    
+           // 'project_id',
             'project_name',
             'project_description',
             'project_owner',
+       
            ['class' => 'yii\grid\ActionColumn'],        
         ],
     ]); ?>
     <?php Pjax::end();?>
+          
 </div>
